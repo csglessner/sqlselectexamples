@@ -1,0 +1,32 @@
+--view file sizes
+use database_test1
+GO
+Select name, size
+From sys.database_files
+
+--See logical and physical file name.  I do the below when I need to show it to other users.  name and logical file name are the same thing
+use database_test1
+GO
+Select name as [logical_file_name], physical_name, size
+from sys.database_file
+
+--Backup log
+backup log database_test1
+  TO database_test1_bk_log
+  GO
+ 
+ --See recovery model
+ USE database_test1
+ GO
+ Select name, recovery_model_desc
+ From sys.databases
+ 
+ --change recoery mode
+ ALTER database database_test1
+ set recovery simple;
+ GO
+ 
+ --Shrink File
+ DBCC SHINKFILE(database_test1_log, 100)
+ GO
+ 
