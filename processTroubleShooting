@@ -1,0 +1,17 @@
+--see processes
+select *
+from sys.dm_exec_sessions s
+
+--see processes by user
+SELECT *
+From sys.dm_exec_session s
+Where login_name = 'glessner'
+
+--Filter based on id
+Select *
+from sys.dm_exec_session s
+Where session id = '444'
+
+--kill process
+kill 444;
+Go
